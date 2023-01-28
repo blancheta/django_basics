@@ -12,20 +12,21 @@ class DimensionMixin:
 
 
 class Product:
+    def __init__(self, color):
+        self.color = color
 
-    def __init__(self, name):
-        self.name = name
 
+class FlatSurface(DimensionMixin, Product):
 
-class Table(Product, DimensionMixin):
+    def __init__(self, w, h, l, weight, color):
+        DimensionMixin.__init__(self, w, h, l, weight)
+        Product.__init__(self, color)
+
+class Leg(DimensionMixin, Product):
     pass
 
 
-class Leg(Product, DimensionMixin):
-    pass
-
-
-class CardboardBox(DimensionMixin):
+class CardboardBox(DimensionMixin, Product):
     pass
 
 
@@ -37,9 +38,11 @@ class CardboardBox(DimensionMixin):
 # cardboard_2 = CardboardBox(40, 40, 40, 0.200)
 # cardboard_3 = CardboardBox(60, 30, 60, 0.200)
 #
-# table = Table(20, 20, 5, 1)
+flat_surface = FlatSurface(20, 20, 5, 1, "white")
+print(flat_surface.color)
 #
 # leg_1 = Leg(2, 2, 5, 0.100)
 # leg_2 = Leg(2, 2, 5, 0.100)
 # leg_3 = Leg(2, 2, 5, 0.100)
 # leg_4 = Leg(2, 2, 5, 0.100)
+print(flat_surface)
